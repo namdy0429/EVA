@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+      <title>EVA</title>
+
+      <!-- Bootstrap core CSS -->
+      <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+      <!-- Custom styles -->
+      <link href="assets/css/force_style.css" rel="stylesheet">
+      <link href="assets/css/cover.css" rel="stylesheet">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+      <script src="dist/js/bootstrap.min.js"></script>
+
+      <!-- d3 related -->
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>
+      <script src="https://d3js.org/d3-color.v1.min.js"></script>
+      <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+      <script type="text/javascript" src="assets/js/pairwise.js"></script>
+
+  </head>
+
+  <body>
+    <div class="site-wrapper" id="page2">
+      <div class="row" style="padding: 40px;">
+        <input id="current_ver" style="display: none;" value="">
+        <div class="col-md-9" id="graphContainer">
+            <svg id="svg_comparison" width="720" height="760" font-family="sans-serif" font-size="7" text-anchor="middle" style="z-index: -1;"></svg>
+        </div>
+
+        <div class="col-md-3">
+            <div class="row">
+              <div class="col-md-12" style="border-bottom-style: solid; border-bottom-width: 5px; border-color: white;">
+                <h3 class="masthead-brand" style="font-size: 20px;">Evolution Visualization for Architectures</h3>  
+              </div>
+            </div>
+            <div class="row" style="margin-top: 10px;">
+              <div id="partial_title" style="font-size: 18px; font-weight: bold;"></div>
+            </div>
+            <div class="row" style="margin-bottom: 10px; margin-top: 10px;">
+              <div class="col-md-12" style="border-bottom-style: solid; border-bottom-width: 2px; border-color: white;">
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <nav>
+                <ul class="nav masthead-nav" id="version_list">
+                  <li class="ver_list" id="history">
+                    
+                    <ul class="nav masthead-nav" id="hist_version_list">
+                     <!--  <li class="hist_ver_list">
+                        <a href="#" style="text-align: left; padding-left: 40px;">Temp1</a>
+                      </li>
+                      <li class="hist_ver_list">
+                        <a href="#" style="text-align: left; padding-left: 40px;">Temp2</a>
+                      </li> -->
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+              <div class="checkbox" style="display: none;" >
+                <label>
+                  <input type="checkbox" id="show_color" checked> Show Color Index
+                </label>
+              </div>
+              <div class="checkbox" style="display: none;">
+                <label>
+                  <input type="checkbox" id="show_arrow"> Show Changes
+                </label>
+              </div>
+              <div class="checkbox" style="display: none;">
+                <label> 
+                  <input type="checkbox"  id="show_history" checked> History
+                </label>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+              <!-- <div class="btn btn-primary btn-lg btn-block" id="choose_btn" onclick="choose2Versions()">
+                Pairwise Comparison
+              </div>
+              <div class="btn btn-primary btn-lg btn-block" id="compare_btn" onclick="compare2Versions()" style="margin-top: 0px; display: none;">
+                Compare
+              </div> -->
+               <div class="btn btn-primary btn-lg btn-block" id="back_btn" onclick="back2History()" style="margin-top: 0px;">
+                Back
+              </div>
+            </div>
+
+            <div class="row">
+              <nav style="margin-top: 20px;">
+                <ul id="package_list" style="list-style: none;">
+                </ul>
+              </nav>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+  <script>
+  $(document).ready(function(){
+    renderGraph();
+  })
+  </script>
+</html>
