@@ -200,5 +200,5 @@ def IssueProcessor(user_id, user_pw, organization_name, software_name):
 		json.dump(issue_dict, output)
 
 if __name__ == "__main__":
-	IssueProcessor('namdy0429', 'skaek93', 'eclipse', 'leshan')
+	IssueProcessor('user_id', 'password', 'eclipse', 'leshan')
 
