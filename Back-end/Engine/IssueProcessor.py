@@ -9,6 +9,8 @@ from gensim.corpora import Dictionary
 import os
 from gensim.parsing.preprocessing import STOPWORDS
 from gensim.utils import simple_preprocess
+#fix ValueError: Expected 2D array, got 1D array instead (line 199)
+import numpy as np
 
 cur_dir = "/".join(os.getcwd().split("/")[:-1])
 
@@ -193,11 +195,20 @@ def IssueProcessor(user_id, user_pw, organization_name, software_name):
 			if "support" in i.body:
 				text_vector.append(1)
 			else:
+				#text_vector.append(0)
+				#issue_dict[str(i.number)]['label'].append(lr_cv.predict(text_vector)[0]+num_category)
+				#fix ValueError: Expected 2D array, got 1D array instead:
 				text_vector.append(0)
-				issue_dict[str(i.number)]['label'].append(lr_cv.predict(text_vector)[0]+num_category)
+				test = np.array(text_vector).reshape(1,-1)		
+				test_vector = test.tolist()
+				issue_dict[str(i.number)]['label'].append(lr_cv.predict(test_vector)[0]+num_category)									
+				#fix TypeError: 7 is not JSON serializable (line 209)
+				issue_dict_str = str(issue_dict) + "\n"
 		
 	with open(cur_dir + "/Data/Issues/" + software_name + "/labeled_issues.json", "w") as output:
-		json.dump(issue_dict, output)
+		#json.dump(issue_dict_str, output)
+		#fix TypeError: 7 is not JSON serializable
+		json.dump(issue_dict_str, output)
 
 if __name__ == "__main__":
 	IssueProcessor('user_id', 'password', 'eclipse', 'leshan')
